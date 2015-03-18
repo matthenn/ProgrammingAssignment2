@@ -1,11 +1,11 @@
-## Put comments here that give an overall description of what your
-## functions do
+# Explanations:
 
-## takes the matrix as input, and creates a list of function objects
-## (one of these will actually calculate the value of the matrix's inverse, 
-## the others simply store the existing paramters as functions)
-## that the next function will be able to use to determine whether or 
-## not it will have to calculate the inverse of the matrix.
+## makeCacheMatrix takes the matrix as input, and creates a list of function objects.
+## One of these, setinverse, will actually calculate the value of the matrix's inverse, 
+## while the others simply store the existing parameters as functions. This allows the
+## next function to determine whether or not it will have to calculate the inverse of the 
+## matrix, based on whether i exists or not, and to be able to calculate the value if 
+## i is null. 
 
 makeCacheMatrix <- function(x = matrix()) {
   i <- NULL
@@ -22,9 +22,10 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## establishes i as the inverse of the matrix calculated from the previous function. 
-## if i was calculated, then this one simply prints i. if i wasn't calculated, it gets
-## the data from the previous function and calculates the matrix
+## cacheSolve takes the result of the makeCacheMatrix function (a list of function objects), 
+## and establishes i as the inverse of the matrix calculated from the previous function. 
+## If i was calculated, then the function simply prints i, saving computation. If i wasn't 
+## calculated, it gets the data from the previous function and calculates the inverse. 
 
 cacheSolve <- function(x, ...) {
   i <- x$getinverse()
